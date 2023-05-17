@@ -1,0 +1,30 @@
+## syntax = docker/dockerfile:1.3
+FROM amazoncorretto:17.0.5@sha256:cd3281c11c4f72d219e6db761856c3771dbece2c856fcd88f8f01d0e8d4f7300
+
+## Add Metadata
+ARG BUILD_DATE
+ARG GIT_REF
+ARG BUILD_VERSION
+ARG IMAGE_NAME
+ARG CODEBUILD_REF
+ARG GIT_REPO
+ARG SERVICE_PATH
+
+# Labels.
+LABEL org.label-schema.schema-version="1.0"
+LABEL org.label-schema.build-date=$BUILD_DATE
+LABEL org.label-schema.name=$IMAGE_NAME
+LABEL org.label-schema.description="codebuild ref: $CODEBUILD_REF"
+LABEL org.label-schema.url="http://www.echobox.com/"
+LABEL org.label-schema.vcs-url="https://github.com/$GIT_REPO"
+LABEL org.label-schema.vcs-ref=$GIT_REF
+LABEL org.label-schema.vendor="Echobox"
+LABEL org.label-schema.version=$BUILD_VERSION
+LABEL org.label-schema.docker.cmd=""
+
+## Copy compiled classes and dependencies of function code
+COPY ${SERVICE_PATH}/target/dependency/* /function/
+COPY ${SERVICE_PATH}/target/Java17Lambda.jar /function
+
+ENTRYPOINT [ "java", "-cp", "/function/*", "--add-opens", "java.base/java.util=ALL-UNNAMED", "com.amazonaws.services.lambda.runtime.api.client.AWSLambda" ]
+CMD ["sh.ebx.Java17Lambda::handleRequest"]
