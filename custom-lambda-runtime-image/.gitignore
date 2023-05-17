@@ -1,0 +1,8 @@
+*.iml
+.idea/
+
+*/target/
+*/app.jar
+*/dependency-reduced-pom.xml
+
+logs/

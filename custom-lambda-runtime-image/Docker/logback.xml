@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+​
+  <conversionRule conversionWord="tid" converterClass="com.echobox.logging.ThreadIdConverter" />
+​
+  <appender name="jsonConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+<encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+  <providers>
+      <pattern>
+      <pattern>
+        {
+          "timestamp": "%date{ISO8601}",
+          "threadId": "%tid-%thread",
+          "appName": "%logger"
+        }
+      </pattern>
+    </pattern>
+    <mdc/>
+    <arguments/>
+    <logLevel/>
+    <message/>
+    <stackTrace>
+      <throwableConverter class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">
+        <maxDepthPerThrowable>30</maxDepthPerThrowable>
+        <maxLength>2048</maxLength>
+        <shortenedClassNameLength>20</shortenedClassNameLength>
+        <rootCauseFirst>true</rootCauseFirst>
+      </throwableConverter>
+    </stackTrace>
+  </providers>
+</encoder>
+    
+  </appender>
+  
+  
+  <!-- First section relates to webservices -->
+  <!-- Fix spring logging -->
+  <logger name="org.springframework" level="warn" additivity="false">
+    <appender-ref ref="jsonConsoleAppender" />
+  </logger>
+  <logger name="sh.ebx.webservice.v3.version" level="warn" additivity="false">
+    <appender-ref ref="jsonConsoleAppender" />
+  </logger>
+  
+  <logger name="org.hibernate" level="WARN" />
+  <logger name="org.jboss" level="WARN" />
+  <logger name="org.apache" level="WARN" />
+  <logger name="com.amazonaws" level="WARN" />
+  <!-- end -->
+​
+​
+  <!-- Get all debug logs from within sh.ebx -->
+  <logger name="sh.ebx" level="DEBUG" />
+​
+  <!-- Disable all but warns from the bitly API -->
+  <logger name="net.swisstech" level="WARN" />
+  
+  <!-- Disable all but error from the mongo driver -->
+  <logger name="org.mongodb" level="WARN" />
+  
+  <!-- Disable all but error from crawler-commons -->
+  <logger name="c.sitemaps" level="ERROR" />
+  <logger name="crawlercommons" level="ERROR" />
+  
+  <!-- Disable all but warns from lambdaworks (and related), a redis library -->
+  <logger name="com.lambdaworks" level="WARN" />
+  <logger name="io.netty" level="WARN" />
+  
+  <!-- Disable all but warns twitter4j -->
+  <logger name="twitter4j" level="WARN" />
+  
+  <!-- Disable all but warns for restFB -->
+  <logger name="com.restfb" level="WARN" />
+​
+  <!-- Disable all but warns for ebx-linkedin-sdk -->
+  <logger name="com.echobox.api.linkedin" level="WARN" />
+​
+  <!-- Disable all but warns for resilience4j -->
+  <logger name="io.github.resilience4j" level="WARN" />
+
+  <!-- Disable all but warnings for validating request bodies -->
+  <logger name="com.networknt.schema" level="WARN" />
+  
+  <root level="debug">
+    <appender-ref ref="jsonConsoleAppender" />
+  </root>
+​
+</configuration>

@@ -1,0 +1,11 @@
+## mapping between jar name, ecr repo and docker base image to use.
+## the ecr repo will not include the owner and git repo prefix - that is added by the script
+EchoboxBackendApp=echoboxbackendapp14=openjdk:14-alpine@sha256:7c29ddf86e7fc5ea5fe01e1ad3e3439422fc50dc2c568b00d6bd79bdb026bfdf
+ScoringApp=echoboxscoringapp=openjdk:14-alpine@sha256:7c29ddf86e7fc5ea5fe01e1ad3e3439422fc50dc2c568b00d6bd79bdb026bfdf
+CoreAPIApp=echoboxcoreapiapp=openjdk:14-alpine@sha256:7c29ddf86e7fc5ea5fe01e1ad3e3439422fc50dc2c568b00d6bd79bdb026bfdf
+LeadScraper=echoboxleadscraperapp14=openjdk:14-alpine@sha256:7c29ddf86e7fc5ea5fe01e1ad3e3439422fc50dc2c568b00d6bd79bdb026bfdf
+EchoboxTestsDemos=echoboxsmiapp14=openjdk:14-alpine@sha256:7c29ddf86e7fc5ea5fe01e1ad3e3439422fc50dc2c568b00d6bd79bdb026bfdf
+SocialAPIApp=echoboxsocialapiapp=openjdk:14-alpine@sha256:7c29ddf86e7fc5ea5fe01e1ad3e3439422fc50dc2c568b00d6bd79bdb026bfdf
+AutoFeedShareNow=autofeedsharenow=public.ecr.aws/lambda/java:11.2022.09.27.11@sha256:999595558c8d6dbc1d0256d89bef9c501fe167191bc42089d7b36af42fe16fa2
+Chartbeat-Data-Fetch=chartbeat-data-fetch=public.ecr.aws/lambda/java:11.2022.09.27.11@sha256:999595558c8d6dbc1d0256d89bef9c501fe167191bc42089d7b36af42fe16fa2
+Java17Lambda=java17lambda=base-image-specified-in-dockerfile
