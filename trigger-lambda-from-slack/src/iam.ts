@@ -7,6 +7,7 @@ import {
   ServicePrincipal,
 } from "aws-cdk-lib/aws-iam";
 import { Construct } from "constructs";
+import { ACCOUNT_ID, ACCOUNT_REGION } from "./common/constants/stack.constants";
 
 interface RoleOptions {
   roleName: string;
@@ -35,7 +36,7 @@ export class IAM {
             statements: [
               new PolicyStatement({
                 actions: ["lambda:UpdateFunctionCode", "lambda:GetFunction"],
-                resources: [`arn:aws:lambda:eu-west-1:647276429701:function:*`],
+                resources: [`arn:aws:lambda:${ACCOUNT_REGION}:${ACCOUNT_ID}:function:*`],
               }),
             ],
           }),

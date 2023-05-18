@@ -1,5 +1,5 @@
 import { App, Stack, StackProps } from "aws-cdk-lib";
-import { ACCOUNT_ID, SERVICE_NAME, STACK_NAME } from "./common/constants/stack.constants";
+import { ACCOUNT_ID, ACCOUNT_REGION, SERVICE_NAME, STACK_NAME } from "./common/constants/stack.constants";
 import { IAM } from "./iam";
 import { Lambda } from "./lambda";
 import { ChatBot } from "./chatbot";
@@ -46,7 +46,7 @@ const stackName = STACK_NAME;
 
 const stackProps: StackProps = {
   env: {
-    region: "eu-west-1",
+    region: ACCOUNT_REGION,
     account: ACCOUNT_ID,
   },
 };
