@@ -18,7 +18,7 @@ export class InfrastructureBase extends Stack {
     const functionRole = iam.createFunctionRole({
       roleName: SERVICE_NAME,
     });
-        // Create the IAM Role for the ChatBot
+    // Create the IAM Role for the ChatBot
     const chatbotRole = iam.createChatbotRole({
       roleName: SERVICE_NAME,
     });
