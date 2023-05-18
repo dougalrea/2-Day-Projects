@@ -1,0 +1,33 @@
+{
+  "name": "@dougalrea/trigger-lambda-from-slack",
+  "version": "0.1.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "author": "dougal.rea@echobox.com",
+  "scripts": {
+    "prebuild": "rimraf iac",
+    "build": "tsc",
+    "cdk": "cdk",
+    "diff": "cdk diff",
+    "deploy": "cdk deploy",
+    "publish_image": "bash scripts/publish_image.sh -v 0.0.1",
+    "format_code": "prettier --list-different .",
+    "format_code:fix": "prettier --write .",
+    "lint": "eslint --config .eslintrc.js --fix \"src/*.ts\" --max-warnings 1",
+    "lint_readonly": "eslint --config .eslintrc.js \"src/*.ts\" --max-warnings 1",
+    "test": "jest --maxWorkers=4"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.10",
+    "@types/node": "10.17.27",
+    "jest": "^26.4.2",
+    "ts-jest": "^26.2.0",
+    "aws-cdk": "2.79.1",
+    "ts-node": "^9.0.0",
+    "typescript": "~3.9.7"
+  },
+  "dependencies": {
+    "aws-cdk-lib": "2.79.1",
+    "constructs": "^10.0.0"
+  }
+}
